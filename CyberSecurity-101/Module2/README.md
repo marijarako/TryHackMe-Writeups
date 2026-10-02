@@ -46,3 +46,25 @@ Permissions are:
 - A file has one owner, but you can also assign a group (of users) to that file, and give that group its own set of permissions, separate from the owner's. So the group of users may only be to read the file while the owner has full control, or any other combination, without changing who actually owns it.
 #### Switching between users
 - command su: su -l user2
+
+# LINUX FUNDAMENTALS (Pt3)
+- Nano - text editor *nano filename*
+- VIM - more complex text editor
+- wget - downloading something from internet wget *https://assets.tryhackme.com/additional/linux-fundamentals/part3/myfile.txt*
+- scp - secure copy, unlike the regular cp command, this command allows you to transfer files between two computers using the SSH protocol to provide both authentication and encryption. *scp important.txt ubuntu@192.168.1.30:/home/ubuntu/transferred.txt* *scp ubuntu@192.168.1.30:/home/ubuntu/documents.txt notes.txt*
+## Serving Files From Your Host - WEB
+-  Python helpfully provides a lightweight and easy-to-use module called "HTTPServer". This module turns your computer into a quick and easy web server that you can use to serve your own files, where they can then be downloaded by another computing using commands such as curl and wget.
+-  We run the command *python3 -m  http.server* in the terminal
+-  We use wget to to download the file using the address and the name of the file. For example: *wget http://10.114.153.119:8000/myfile*
+-  One flaw with this module is that you have no way of indexing, so you must know the exact name and location of the file that you wish to use.
+## Processes 101
+- Processes are the programs that are running on your machine. They are managed by the kernel, where each process will have an ID associated with it, also known as its PID. The PID increments for the order In which the process starts. I.e. the 60th process will have a PID of 60.
+### Viewing Processes
+- We can use ps command to provide a list of the running processes as our user's session and some additional information such as its status code, the session that is running it, how much usage time of the CPU it is using, and the name of the actual program or command that is being executed.
+- To see the processes run by other users and those that don't run from a session (i.e. system processes), we need to provide aux to the ps command like so: ps aux
+- Another very useful command is the top command; top gives you real-time statistics about the processes running on your system instead of a one-time view. These statistics will refresh every 10 seconds, but will also refresh when you use the arrow keys to browse the various rows. Another great command to gain insight into your system is via the top command
+### Managing Processes
+- To kill a command, we can use the appropriately named kill command and the associated PID that we wish to kill. i.e., to kill PID 1337, we'd use kill 1337.
+- SIGTERM - Kill the process, but allow it to do some cleanup tasks beforehand
+- SIGKILL - Kill the process - doesn't do any cleanup after the fact
+- SIGSTOP - Stop/suspend a process
